@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Load</title>
+    <style>
+        .user{
+            background-color: #b5dd7a;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 5px 5px 10px gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="user-container">
+
+    </div>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res =>res.json())
+        .then(data => showUserName(data));
+
+        function showUserName(data){
+            let lists =" ";
+            data.forEach(user => {
+                lists = lists + `<div class = "user">
+                    <h2> ${user.name} </h2> 
+                    <h3> Email: ${user.email} </h3>
+                    <p> ${user.company.name}</p>
+                    
+                    </div>`
+                
+            });
+            const ul = document.getElementById("user-container");
+            ul.innerHTML = lists;
+        }
+    </script>
+    
+</body>
+</html>
